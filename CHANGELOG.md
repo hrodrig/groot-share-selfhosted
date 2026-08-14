@@ -7,6 +7,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-08-13
+
+### Changed
+
+- Default app pin **`GFS_VERSION=v0.2.1`** (`ghcr.io/hrodrig/gfs`).
+- Pass gfs v0.2.1 env through Compose, Helm, and `docker run`: `GFS_BOOTSTRAP_ADMIN_NAME`, `GFS_LOGIN_SIMPLE`, `GFS_BRAND_SUB`, `GFS_FOOTER`.
+
 ## [0.1.0] - 2026-08-13
 
 ### Added

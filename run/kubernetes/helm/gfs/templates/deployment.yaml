@@ -79,6 +79,12 @@ spec:
                   name: {{ include "gfs.bootstrapSecretName" . }}
                   key: GFS_BOOTSTRAP_PASSWORD
                   optional: true
+            - name: GFS_BOOTSTRAP_ADMIN_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gfs.bootstrapSecretName" . }}
+                  key: GFS_BOOTSTRAP_ADMIN_NAME
+                  optional: true
             {{- if eq .Values.topology "vps-s3" }}
             - name: GFS_S3_BUCKET
               value: {{ .Values.s3.bucket | quote }}

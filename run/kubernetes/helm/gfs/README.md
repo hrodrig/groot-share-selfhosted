@@ -25,6 +25,9 @@ helm upgrade --install gfs ./run/kubernetes/helm/gfs \
 | `topology` | `vps` | `vps` or `vps-s3` |
 | `bootstrap.existingSecret` | `""` | Preferred over inline admin/password |
 | `s3.existingSecret` | `""` | Required keys when `topology=vps-s3` |
+| `env.loginSimple` | `"false"` | `true`: white `/login` (no product chrome) |
+| `env.brandSub` | `""` | App-bar tag (default `archive door`). `-` hides |
+| `env.footer` | `""` | Footer text (default family links). `-` hides |
 
 ## Validate
 

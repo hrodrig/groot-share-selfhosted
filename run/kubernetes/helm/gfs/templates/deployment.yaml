@@ -61,6 +61,12 @@ spec:
               value: {{ .Values.env.keepLast | quote }}
             - name: GFS_MAX_AGE_DAYS
               value: {{ .Values.env.maxAgeDays | quote }}
+            - name: GFS_LOGIN_SIMPLE
+              value: {{ .Values.env.loginSimple | quote }}
+            - name: GFS_BRAND_SUB
+              value: {{ .Values.env.brandSub | quote }}
+            - name: GFS_FOOTER
+              value: {{ .Values.env.footer | quote }}
             - name: GFS_BOOTSTRAP_ADMIN
               valueFrom:
                 secretKeyRef:

@@ -7,11 +7,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Added
-
-- README hero (`assets/groot-share-selfhosted-hero.png`); problem / solution / alternatives sections that point at [groot-share ALTERNATIVES](https://github.com/hrodrig/groot-share/blob/main/docs/ALTERNATIVES.md) instead of duplicating the product matrix.
-- Favicon set: gfs crate mark under [`assets/favicons/`](assets/favicons/) (same SVG as groot-share); wired on Helm Pages landing and `Chart.yaml` `icon`.
-
 ## [0.1.0] - 2026-08-13
 
 ### Added
@@ -22,3 +17,5 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Community files: LICENSE, DISCLAIMER, CONTRIBUTING, SECURITY, CODE_OF_CONDUCT, AGENTS, ROADMAP.
 - CI: Helm lint + kubeconform; chart-releaser workflow for `v*` tags.
 - Default app pin **`GFS_VERSION=v0.2.0`** (`ghcr.io/hrodrig/gfs`).
+- README hero (`assets/groot-share-selfhosted-hero.png`); problem / solution / alternatives sections that point at [groot-share ALTERNATIVES](https://github.com/hrodrig/groot-share/blob/main/docs/ALTERNATIVES.md).
+- Favicon set: gfs crate mark under [`assets/favicons/`](assets/favicons/); Helm Pages landing + `Chart.yaml` `icon`.

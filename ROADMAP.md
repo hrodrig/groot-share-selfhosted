@@ -9,7 +9,7 @@ Design: [docs/superpowers/specs/2026-08-13-groot-share-selfhosted-design.md](./d
 
 ## Current focus
 
-Scaffold v0.1.0. Next: first GitHub publish + `v0.1.0` tag (Helm Pages), then SFTP inbox volume docs when gfs Phase 8 ships.
+v0.1.0 tagged. Next: Helm Pages live after first chart-releaser run; SFTP inbox volume docs when gfs Phase 8 ships.
 
 ---
 
@@ -24,7 +24,7 @@ Scaffold v0.1.0. Next: first GitHub publish + `v0.1.0` tag (Helm Pages), then SF
 | GSH-005 | `GFS_HOST_DATA` outside clone + `run/scripts/compose-stack.sh` | ✅ |
 | GSH-006 | Standalone / docker run docs (linux, macos, windows) | ✅ |
 | GSH-007 | Helm chart `run/kubernetes/helm/gfs/` + `make release-check` | ✅ |
-| GSH-008 | First commit + GitHub remote publish | ⬜ |
+| GSH-008 | First commit + GitHub remote publish | ✅ |
 
 ---
 

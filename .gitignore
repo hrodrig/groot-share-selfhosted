@@ -1,0 +1,49 @@
+# Deny-all by default
+*
+.*
+
+# Allowlist: repository metadata
+!.gitignore
+!VERSION
+!LICENSE
+!DISCLAIMER.md
+!README.md
+!ROADMAP.md
+!AGENTS.md
+!CHANGELOG.md
+!CONTRIBUTING.md
+!CODE_OF_CONDUCT.md
+!SECURITY.md
+!Makefile
+
+# Design / implementation docs
+!docs/
+!docs/**
+
+# Images (README hero, etc.)
+!assets/
+!assets/**
+
+# GitHub Actions
+!.github/
+!.github/workflows/
+!.github/workflows/**
+!.github/dependabot.yml
+
+# Deployment tree
+!run/
+!run/**
+
+# Lab / release-check placeholder (never production secrets)
+!data/
+!data/.keep
+data/release-check/
+
+# Generated noise
+.DS_Store
+*.db
+*.db-shm
+*.db-wal
+.env
+**/.env
+!**/.env.example

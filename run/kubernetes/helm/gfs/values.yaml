@@ -1,0 +1,83 @@
+nameOverride: ""
+fullnameOverride: ""
+
+# SQLite + local files: keep at 1 unless you use shared RWX storage.
+replicaCount: 1
+
+image:
+  repository: ghcr.io/hrodrig/gfs
+  tag: "v0.2.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+
+# vps | vps-s3
+topology: vps
+
+env:
+  listen: ":8080"
+  dataDir: "/data"
+  logFormat: "json"
+  logLevel: "info"
+  cookieSecure: "false"
+  keepLast: "20"
+  maxAgeDays: "90"
+
+bootstrap:
+  existingSecret: ""
+  secretName: gfs-bootstrap
+  # Lab only. Prefer existingSecret. Never commit real passwords.
+  admin: ""
+  password: ""
+
+s3:
+  existingSecret: ""
+  secretName: gfs-s3
+  bucket: ""
+  region: "us-east-1"
+  endpoint: ""
+  prefix: "captures/"
+  pathStyle: "true"
+  # Lab only. Prefer existingSecret with AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY.
+  accessKeyId: ""
+  secretAccessKey: ""
+
+persistence:
+  enabled: true
+  size: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClass: ""
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: "2"
+    memory: 1Gi
+
+imagePullSecrets: []
+
+# distroless static-debian13:nonroot → uid/gid 65532
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  fsGroup: 65532
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

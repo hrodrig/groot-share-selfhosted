@@ -1,0 +1,132 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gfs.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "gfs.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "gfs.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "gfs.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: gfs
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort | default 8080 }}
+              name: http
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          env:
+            - name: GFS_TOPOLOGY
+              value: {{ .Values.topology | quote }}
+            - name: GFS_DATA_DIR
+              value: {{ .Values.env.dataDir | quote }}
+            - name: GFS_LISTEN
+              value: {{ .Values.env.listen | quote }}
+            - name: GFS_LOG_FORMAT
+              value: {{ .Values.env.logFormat | quote }}
+            - name: GFS_LOG_LEVEL
+              value: {{ .Values.env.logLevel | quote }}
+            - name: GFS_COOKIE_SECURE
+              value: {{ .Values.env.cookieSecure | quote }}
+            - name: GFS_KEEP_LAST
+              value: {{ .Values.env.keepLast | quote }}
+            - name: GFS_MAX_AGE_DAYS
+              value: {{ .Values.env.maxAgeDays | quote }}
+            - name: GFS_BOOTSTRAP_ADMIN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gfs.bootstrapSecretName" . }}
+                  key: GFS_BOOTSTRAP_ADMIN
+                  optional: true
+            - name: GFS_BOOTSTRAP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gfs.bootstrapSecretName" . }}
+                  key: GFS_BOOTSTRAP_PASSWORD
+                  optional: true
+            {{- if eq .Values.topology "vps-s3" }}
+            - name: GFS_S3_BUCKET
+              value: {{ .Values.s3.bucket | quote }}
+            - name: GFS_S3_REGION
+              value: {{ .Values.s3.region | quote }}
+            - name: GFS_S3_ENDPOINT
+              value: {{ .Values.s3.endpoint | quote }}
+            - name: GFS_S3_PREFIX
+              value: {{ .Values.s3.prefix | quote }}
+            - name: GFS_S3_PATH_STYLE
+              value: {{ .Values.s3.pathStyle | quote }}
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gfs.s3SecretName" . }}
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gfs.s3SecretName" . }}
+                  key: AWS_SECRET_ACCESS_KEY
+            {{- end }}
+            - name: TMPDIR
+              value: /tmp
+          volumeMounts:
+            - name: data
+              mountPath: {{ .Values.env.dataDir }}
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "gfs.fullname" . }}-data
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

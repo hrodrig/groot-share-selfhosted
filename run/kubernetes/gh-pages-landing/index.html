@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Helm chart repo · gfs (self-hosted)</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.55; color: #1a1a1a; }
+    h1 { font-size: 1.35rem; margin-top: 0; }
+    h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+    a { color: #0969da; }
+    code { background: #f6f8fa; padding: 0.12em 0.35em; border-radius: 4px; font-size: 0.92em; }
+    pre { background: #f6f8fa; padding: 1rem; border-radius: 6px; overflow-x: auto; font-size: 0.88rem; }
+    .muted { color: #656d76; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <h1>Helm repository · gfs</h1>
+  <p>This site hosts the Helm chart <strong>index</strong> for deploying
+    <a href="https://github.com/hrodrig/groot-share">gfs</a> on Kubernetes.
+    Published from <a href="https://github.com/hrodrig/groot-share-selfhosted">groot-share-selfhosted</a>.</p>
+  <p>Helm clients fetch <a href="index.yaml"><code>index.yaml</code></a> — a browser is optional.</p>
+  <h2>Add the repo and install</h2>
+  <pre><code>helm repo add gfs https://hrodrig.github.io/groot-share-selfhosted
+helm repo update
+helm install gfs gfs/gfs -n gfs --create-namespace -f my-values.yaml</code></pre>
+  <p class="muted"><strong>Full docs:</strong>
+    <a href="https://github.com/hrodrig/groot-share-selfhosted/blob/main/README.md">groot-share-selfhosted README</a>
+    · <strong>Application:</strong> <a href="https://github.com/hrodrig/groot-share">hrodrig/groot-share</a></p>
+</body>
+</html>

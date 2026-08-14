@@ -1,0 +1,104 @@
+# Production-oriented stack: Traefik (TLS + HTTP→HTTPS) + gfs (no host :8080).
+#
+# Prerequisites:
+#   - DNS A/AAAA for GFS_HOSTNAME → this host
+#   - Ports 80 and 443 reachable (ACME HTTP-01)
+#
+# Usage: ./run/scripts/compose-stack.sh traefik up -d
+
+name: gfs-edge
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+networks:
+  edge:
+    name: gfs_edge
+    driver: bridge
+
+volumes:
+  traefik_letsencrypt:
+
+services:
+  traefik:
+    image: traefik:v3.6.17
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    command:
+      - --log.level=INFO
+      - --global.sendAnonymousUsage=true
+      - --accesslog=true
+      - --api.dashboard=false
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=gfs_edge
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --certificatesresolvers.le.acme.email=${ACME_EMAIL:?set ACME_EMAIL for Let's Encrypt}
+      - --certificatesresolvers.le.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.le.acme.httpchallenge.entrypoint=web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik_letsencrypt:/letsencrypt
+    networks:
+      - edge
+    logging: *default-logging
+
+  gfs:
+    image: ${GFS_IMAGE:-ghcr.io/hrodrig/gfs:${GFS_VERSION:-v0.2.0}}
+    restart: unless-stopped
+    user: "65532:65532"
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      GFS_TOPOLOGY: ${GFS_TOPOLOGY:-vps}
+      GFS_DATA_DIR: ${GFS_DATA_DIR:-/data}
+      GFS_LISTEN: ${GFS_LISTEN:-:8080}
+      GFS_LOG_FORMAT: ${GFS_LOG_FORMAT:-json}
+      GFS_LOG_LEVEL: ${GFS_LOG_LEVEL:-info}
+      GFS_BOOTSTRAP_ADMIN: ${GFS_BOOTSTRAP_ADMIN:-}
+      GFS_BOOTSTRAP_PASSWORD: ${GFS_BOOTSTRAP_PASSWORD:-}
+      GFS_COOKIE_SECURE: ${GFS_COOKIE_SECURE:-true}
+      GFS_MAX_UPLOAD_BYTES: ${GFS_MAX_UPLOAD_BYTES:-}
+      GFS_KEEP_LAST: ${GFS_KEEP_LAST:-}
+      GFS_MAX_AGE_DAYS: ${GFS_MAX_AGE_DAYS:-}
+      GFS_RETENTION_EVERY: ${GFS_RETENTION_EVERY:-}
+      GFS_STAGING_GRACE: ${GFS_STAGING_GRACE:-}
+      GFS_S3_BUCKET: ${GFS_S3_BUCKET:-}
+      GFS_S3_REGION: ${GFS_S3_REGION:-}
+      GFS_S3_ENDPOINT: ${GFS_S3_ENDPOINT:-}
+      GFS_S3_PREFIX: ${GFS_S3_PREFIX:-}
+      GFS_S3_PATH_STYLE: ${GFS_S3_PATH_STYLE:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+    volumes:
+      - ${GFS_HOST_DATA:?set GFS_HOST_DATA in .env}:/data
+    networks:
+      - edge
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=gfs_edge
+      - traefik.http.middlewares.gfs-ratelimit.ratelimit.average=20
+      - traefik.http.middlewares.gfs-ratelimit.ratelimit.period=1s
+      - traefik.http.middlewares.gfs-ratelimit.ratelimit.burst=80
+      - traefik.http.middlewares.gfs-hdr.headers.frameDeny=true
+      - traefik.http.middlewares.gfs-hdr.headers.browserXssFilter=true
+      - traefik.http.middlewares.gfs-hdr.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.gfs-hdr.headers.stsSeconds=31536000
+      - traefik.http.middlewares.gfs-hdr.headers.stsIncludeSubdomains=false
+      - traefik.http.routers.gfs.rule=Host(`${GFS_HOSTNAME:?set GFS_HOSTNAME FQDN}`)
+      - traefik.http.routers.gfs.entrypoints=websecure
+      - traefik.http.routers.gfs.tls=true
+      - traefik.http.routers.gfs.tls.certresolver=le
+      - traefik.http.routers.gfs.middlewares=gfs-ratelimit,gfs-hdr
+      - traefik.http.services.gfs.loadbalancer.server.port=8080
+    logging: *default-logging

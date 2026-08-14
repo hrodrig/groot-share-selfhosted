@@ -1,0 +1,41 @@
+# json-file log rotation (avoids unbounded container log growth on disk).
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  gfs:
+    image: ${GFS_IMAGE:-ghcr.io/hrodrig/gfs:${GFS_VERSION:-v0.2.0}}
+    container_name: gfs
+    restart: unless-stopped
+    user: "65532:65532"
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "${GFS_HOST_PORT:-8080}:8080"
+    environment:
+      GFS_TOPOLOGY: ${GFS_TOPOLOGY:-vps}
+      GFS_DATA_DIR: ${GFS_DATA_DIR:-/data}
+      GFS_LISTEN: ${GFS_LISTEN:-:8080}
+      GFS_LOG_FORMAT: ${GFS_LOG_FORMAT:-json}
+      GFS_LOG_LEVEL: ${GFS_LOG_LEVEL:-info}
+      GFS_BOOTSTRAP_ADMIN: ${GFS_BOOTSTRAP_ADMIN:-}
+      GFS_BOOTSTRAP_PASSWORD: ${GFS_BOOTSTRAP_PASSWORD:-}
+      GFS_COOKIE_SECURE: ${GFS_COOKIE_SECURE:-false}
+      GFS_MAX_UPLOAD_BYTES: ${GFS_MAX_UPLOAD_BYTES:-}
+      GFS_KEEP_LAST: ${GFS_KEEP_LAST:-}
+      GFS_MAX_AGE_DAYS: ${GFS_MAX_AGE_DAYS:-}
+      GFS_RETENTION_EVERY: ${GFS_RETENTION_EVERY:-}
+      GFS_STAGING_GRACE: ${GFS_STAGING_GRACE:-}
+      GFS_S3_BUCKET: ${GFS_S3_BUCKET:-}
+      GFS_S3_REGION: ${GFS_S3_REGION:-}
+      GFS_S3_ENDPOINT: ${GFS_S3_ENDPOINT:-}
+      GFS_S3_PREFIX: ${GFS_S3_PREFIX:-}
+      GFS_S3_PATH_STYLE: ${GFS_S3_PATH_STYLE:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+    volumes:
+      - ${GFS_HOST_DATA:?set GFS_HOST_DATA in .env}:/data
+    logging: *default-logging

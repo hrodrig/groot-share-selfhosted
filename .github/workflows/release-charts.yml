@@ -1,0 +1,61 @@
+# Publishes Helm charts to GitHub Pages (index.yaml + .tgz on gh-pages) on tag v*.
+name: Release Charts
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Ensure gh-pages branch exists
+        run: |
+          set -euo pipefail
+          TAG_SHA=$(git rev-parse HEAD)
+          git fetch origin
+          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+            echo "Remote branch gh-pages already exists."
+          else
+            echo "Creating orphan gh-pages (first Helm chart publish)..."
+            LANDING_TMP=$(mktemp -d)
+            cp run/kubernetes/gh-pages-landing/README.md \
+              run/kubernetes/gh-pages-landing/index.html \
+              run/kubernetes/gh-pages-landing/favicon.svg \
+              run/kubernetes/gh-pages-landing/favicon.ico \
+              run/kubernetes/gh-pages-landing/favicon-32x32.png \
+              "$LANDING_TMP/"
+            git checkout --orphan gh-pages-init
+            git rm -rf . 2>/dev/null || true
+            cp "$LANDING_TMP/README.md" "$LANDING_TMP/index.html" \
+              "$LANDING_TMP/favicon.svg" "$LANDING_TMP/favicon.ico" \
+              "$LANDING_TMP/favicon-32x32.png" .
+            touch .nojekyll
+            git add README.md index.html favicon.svg favicon.ico favicon-32x32.png .nojekyll
+            git commit -m "chore: initialize gh-pages Helm landing (gghstats pattern)"
+            git push origin HEAD:gh-pages
+            git checkout "$TAG_SHA"
+          fi
+          git fetch origin
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.7.0
+        with:
+          charts_dir: run/kubernetes/helm
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

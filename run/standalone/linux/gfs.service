@@ -1,0 +1,22 @@
+[Unit]
+Description=gfs — groot files share (VPS door)
+Documentation=https://github.com/hrodrig/groot-share
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=gfs
+Group=gfs
+EnvironmentFile=/etc/gfs/gfs.env
+ExecStart=/usr/local/bin/gfs
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/gfs
+
+[Install]
+WantedBy=multi-user.target

@@ -34,6 +34,10 @@
 !run/
 !run/**
 
+# Live Ansible copies (operator inventory / vars — never commit)
+run/vps-recommended/ansible/inventory.yml
+run/vps-recommended/ansible/group_vars/all.yml
+
 # Lab / release-check placeholder (never production secrets)
 !data/
 !data/.keep

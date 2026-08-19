@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- In-tree **`run/vps-recommended/`** (optional Debian/Ubuntu host baseline + Ansible). Does not install gfs. Compose **minimal** is loopback/lab — UFW defaults stay 22/80/443.
+
 ## [0.1.1] - 2026-08-13
 
 ### Changed

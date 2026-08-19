@@ -2,6 +2,8 @@
 
 One **gfs** container. Host port **`${GFS_HOST_PORT:-8080}`**. Topology **`vps`** by default.
 
+**Not a public edge.** Loopback / lab (`127.0.0.1`). For HTTPS on a VPS use [Traefik](../traefik/). Host baseline: [vps-recommended](../../vps-recommended/).
+
 ```bash
 export GFS_HOST_DATA=/home/gfs/gfs-data
 mkdir -p "$GFS_HOST_DATA"

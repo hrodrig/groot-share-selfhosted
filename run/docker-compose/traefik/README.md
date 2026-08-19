@@ -11,4 +11,4 @@ export GFS_HOST_DATA=/home/gfs/gfs-data
 
 **Remove:** `./run/scripts/compose-stack.sh traefik down`
 
-Docker socket is mounted read-only for Traefik’s Docker provider. Harden the host; see [gghstats-selfhosted vps-recommended](https://github.com/hrodrig/gghstats-selfhosted/tree/main/run/vps-recommended).
+Docker socket is mounted read-only for Traefik’s Docker provider. Harden the host; see [vps-recommended](../../vps-recommended/).

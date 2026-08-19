@@ -100,7 +100,7 @@ Product comparison, pros/cons, and “when not to use gfs” stay in **groot-sha
 
 Default image tag in examples: **`v0.2.1`**. Set **`GFS_VERSION`** in **`${GFS_HOST_DATA}/.env`**.
 
-**Your own VPS:** harden the host before exposing gfs. Family guidance: **[gghstats-selfhosted `run/vps-recommended`](https://github.com/hrodrig/gghstats-selfhosted/tree/main/run/vps-recommended)**. See also [DISCLAIMER.md](./DISCLAIMER.md).
+**Your own VPS:** harden the host before exposing gfs. Optional baseline: **[`run/vps-recommended/`](run/vps-recommended/)** (recommendations only). See also [DISCLAIMER.md](./DISCLAIMER.md).
 
 **[↑ Contents](#table-of-contents)**
 
@@ -212,6 +212,7 @@ run/
   docker/
   standalone/{linux,macos,windows}/
   examples/{vps,vps-s3}/
+  vps-recommended/                 # optional host baseline (Ansible); not gfs install
   kubernetes/helm/gfs/             # chart name "gfs" (app); not the repo name
   kubernetes/manifests/
 # NOT in git: ${GFS_HOST_DATA}/.env, SQLite, archives

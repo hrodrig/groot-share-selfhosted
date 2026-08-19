@@ -25,7 +25,7 @@ Containers: [docker](../../docker/) / [Compose](../../docker-compose/).
 
 ```bash
 wget -q -O /tmp/gfs.deb \
-  https://github.com/hrodrig/groot-share/releases/download/v0.2.0/gfs_0.2.0_linux_amd64.deb
+  https://github.com/hrodrig/groot-share/releases/download/v0.2.1/gfs_0.2.1_linux_amd64.deb
 sudo dpkg -i /tmp/gfs.deb
 ```
 
@@ -58,7 +58,7 @@ Unit file in this directory: [`gfs.service`](gfs.service).
 
 ```bash
 git clone https://github.com/hrodrig/groot-share.git && cd groot-share
-git checkout v0.2.0
+git checkout v0.2.1
 make build
 export GFS_TOPOLOGY=vps GFS_DATA_DIR=/var/lib/gfs
 ./bin/gfs

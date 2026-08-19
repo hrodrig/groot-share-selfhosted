@@ -7,7 +7,7 @@ x-logging: &default-logging
 
 services:
   gfs:
-    image: ${GFS_IMAGE:-ghcr.io/hrodrig/gfs:${GFS_VERSION:-v0.2.0}}
+    image: ${GFS_IMAGE:-ghcr.io/hrodrig/gfs:${GFS_VERSION:-v0.2.1}}
     container_name: gfs
     restart: unless-stopped
     user: "65532:65532"
@@ -23,12 +23,16 @@ services:
       GFS_LOG_LEVEL: ${GFS_LOG_LEVEL:-info}
       GFS_BOOTSTRAP_ADMIN: ${GFS_BOOTSTRAP_ADMIN:-}
       GFS_BOOTSTRAP_PASSWORD: ${GFS_BOOTSTRAP_PASSWORD:-}
+      GFS_BOOTSTRAP_ADMIN_NAME: ${GFS_BOOTSTRAP_ADMIN_NAME:-}
       GFS_COOKIE_SECURE: ${GFS_COOKIE_SECURE:-false}
       GFS_MAX_UPLOAD_BYTES: ${GFS_MAX_UPLOAD_BYTES:-}
       GFS_KEEP_LAST: ${GFS_KEEP_LAST:-}
       GFS_MAX_AGE_DAYS: ${GFS_MAX_AGE_DAYS:-}
       GFS_RETENTION_EVERY: ${GFS_RETENTION_EVERY:-}
       GFS_STAGING_GRACE: ${GFS_STAGING_GRACE:-}
+      GFS_LOGIN_SIMPLE: ${GFS_LOGIN_SIMPLE:-}
+      GFS_BRAND_SUB: ${GFS_BRAND_SUB:-}
+      GFS_FOOTER: ${GFS_FOOTER:-}
       GFS_S3_BUCKET: ${GFS_S3_BUCKET:-}
       GFS_S3_REGION: ${GFS_S3_REGION:-}
       GFS_S3_ENDPOINT: ${GFS_S3_ENDPOINT:-}

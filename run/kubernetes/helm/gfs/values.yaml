@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/hrodrig/gfs
-  tag: "v0.2.0"
+  tag: "v0.2.1"
   pullPolicy: IfNotPresent
 
 service:
@@ -25,6 +25,9 @@ env:
   cookieSecure: "false"
   keepLast: "20"
   maxAgeDays: "90"
+  loginSimple: "false"
+  brandSub: ""
+  footer: ""
 
 bootstrap:
   existingSecret: ""
@@ -32,6 +35,8 @@ bootstrap:
   # Lab only. Prefer existingSecret. Never commit real passwords.
   admin: ""
   password: ""
+  # Display name for the first admin (gfs default: Administrator).
+  name: ""
 
 s3:
   existingSecret: ""

@@ -2,7 +2,7 @@
 
 # groot-share-selfhosted
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.1.1-blue)](./VERSION)
 [![Release](https://img.shields.io/github/v/release/hrodrig/groot-share-selfhosted?label=release)](https://github.com/hrodrig/groot-share-selfhosted/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![App image on GHCR](https://img.shields.io/badge/image-ghcr.io%2Fhrodrig%2Fgfs-2496ED?logo=github)](https://github.com/hrodrig/groot-share/pkgs/container/gfs)
@@ -98,7 +98,7 @@ Product comparison, pros/cons, and “when not to use gfs” stay in **groot-sha
 
 **Config outside the clone:** copy **[`run/common/.env.example`](run/common/.env.example)** → **`${GFS_HOST_DATA}/.env`**, keep SQLite and archives under that directory, prefer **[`run/scripts/compose-stack.sh`](run/scripts/compose-stack.sh)**. `git pull` must not flatten secrets or DB files.
 
-Default image tag in examples: **`v0.2.0`**. Set **`GFS_VERSION`** in **`${GFS_HOST_DATA}/.env`**.
+Default image tag in examples: **`v0.2.1`**. Set **`GFS_VERSION`** in **`${GFS_HOST_DATA}/.env`**.
 
 **Your own VPS:** harden the host before exposing gfs. Family guidance: **[gghstats-selfhosted `run/vps-recommended`](https://github.com/hrodrig/gghstats-selfhosted/tree/main/run/vps-recommended)**. See also [DISCLAIMER.md](./DISCLAIMER.md).
 
@@ -176,12 +176,13 @@ Chart: [`run/kubernetes/helm/gfs/`](./run/kubernetes/helm/gfs/) — Deployment, 
 kubectl create namespace gfs
 kubectl create secret generic gfs-bootstrap -n gfs \
   --from-literal=GFS_BOOTSTRAP_ADMIN='your-admin' \
-  --from-literal=GFS_BOOTSTRAP_PASSWORD='a-long-unique-password'
+  --from-literal=GFS_BOOTSTRAP_PASSWORD='a-long-unique-password' \
+  --from-literal=GFS_BOOTSTRAP_ADMIN_NAME='Administrator'
 
 helm upgrade --install gfs ./run/kubernetes/helm/gfs \
   --namespace gfs \
   --set bootstrap.existingSecret=gfs-bootstrap \
-  --set image.tag=v0.2.0
+  --set image.tag=v0.2.1
 ```
 
 **Helm repo (after first chart publish):** [index.yaml](https://hrodrig.github.io/groot-share-selfhosted/index.yaml) · packages on [Releases](https://github.com/hrodrig/groot-share-selfhosted/releases) as `gfs-<chart-version>.tgz`.
@@ -191,7 +192,7 @@ helm repo add gfs https://hrodrig.github.io/groot-share-selfhosted
 helm repo update
 helm upgrade --install gfs gfs/gfs -n gfs --create-namespace \
   --set bootstrap.existingSecret=gfs-bootstrap \
-  --set image.tag=v0.2.0
+  --set image.tag=v0.2.1
 ```
 
 Repo Settings → Pages: source branch **`gh-pages`** (created by chart-releaser on first `v*` tag).

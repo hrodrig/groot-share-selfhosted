@@ -37,7 +37,7 @@ v0.1.0 tagged. Next: Helm Pages live after first chart-releaser run; SFTP inbox 
 | GSH-012 | Smoke recipe: `/healthz` + `/readyz` after Compose up | ⬜ |
 | GSH-013 | Document SFTP inbox bind-mount when gfs Phase 8 (`GFS_SFTP_INBOX`) ships | 🔒 gfs Phase 8 |
 | GSH-014 | Optional observability overlay (link gghstats-selfhosted pattern; do not copy Authelia) | ⬜ |
-| GSH-015 | VPS hardening: keep pointing at gghstats `run/vps-recommended` | ✅ |
+| GSH-015 | VPS hardening: in-tree `run/vps-recommended` (host baseline; optional Ansible) | ✅ |
 
 ---
 

@@ -31,7 +31,7 @@ You are responsible for ensuring that your use is lawful and appropriate. The ma
 - Putting long-lived bucket credentials on laptops (gfs exists so those keys stay on the VPS)
 - Damage arising from following outdated, incomplete, or environment-specific guidance without your own validation
 
-For **self-managed VPS** hardening ideas (recommendations only — you validate and apply), see the family docs at [gghstats-selfhosted `run/vps-recommended`](https://github.com/hrodrig/gghstats-selfhosted/tree/main/run/vps-recommended).
+For **self-managed VPS** hardening ideas (recommendations only — you validate and apply), see [`run/vps-recommended/`](run/vps-recommended/).
 
 ## No warranty / limitation of liability
 

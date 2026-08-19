@@ -127,7 +127,8 @@ See **[`run/docker/README.md`](run/docker/README.md)**. Distroless image: UID **
 ```bash
 export GFS_HOST_DATA=/home/gfs/gfs-data   # outside the clone
 mkdir -p "$GFS_HOST_DATA"
-sudo chown 65532:65532 "$GFS_HOST_DATA"
+sudo chown 65532:"$USER" "$GFS_HOST_DATA"
+sudo chmod 2775 "$GFS_HOST_DATA"
 cp run/common/.env.example "${GFS_HOST_DATA}/.env"
 # edit: GFS_HOST_DATA (same path), GFS_BOOTSTRAP_* (min 8 chars), GFS_VERSION
 
@@ -153,9 +154,11 @@ Open **http://127.0.0.1:8080/login** with the bootstrap credentials. After first
 ```bash
 export GFS_HOST_DATA=/home/gfs/gfs-data
 mkdir -p "$GFS_HOST_DATA"
-sudo chown 65532:65532 "$GFS_HOST_DATA"
+sudo chown 65532:"$USER" "$GFS_HOST_DATA"
+sudo chmod 2775 "$GFS_HOST_DATA"
 cp run/common/.env.example "${GFS_HOST_DATA}/.env"
-# set GFS_HOSTNAME, ACME_EMAIL, GFS_COOKIE_SECURE=true, bootstrap, GFS_HOST_DATA
+# set GFS_HOSTNAME, ACME_EMAIL, GFS_COOKIE_SECURE=true, GFS_BOOTSTRAP_* (min 8),
+# GFS_HOST_DATA, GFS_TOPOLOGY=vps (vps-s3 only with bucket + AWS_*)
 
 ./run/scripts/compose-stack.sh traefik up -d
 ```

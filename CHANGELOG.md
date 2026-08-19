@@ -11,6 +11,11 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 - In-tree **`run/vps-recommended/`** (optional Debian/Ubuntu host baseline + Ansible). Does not install gfs. Compose **minimal** is loopback/lab — UFW defaults stay 22/80/443.
 
+### Fixed
+
+- Traefik path docs: first-boot `mkdir` / `chown 65532:$USER` + `chmod 2775` / bootstrap / `GFS_TOPOLOGY=vps`, plus fail-closed log table (SQLite UID **65532**, empty bootstrap, `vps-s3` without bucket). `chown -R 65532:65532` locks the operator out of `.env`.
+- Document chrome env on the Traefik path: `GFS_BRAND_SUB`, `GFS_FOOTER`, `GFS_LOGIN_SIMPLE`.
+
 ## [0.1.1] - 2026-08-13
 
 ### Changed

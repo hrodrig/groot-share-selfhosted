@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   gfs:
   - apiVersion: v2
+    appVersion: 0.2.1
+    created: "2026-08-19T00:22:10.073838999Z"
+    description: gfs — VPS web/API door for groot diagnostic archives
+    digest: 437735bff1f4238c304823b65a11480706e8d44963301c2bdf68be58612ccb59
+    icon: https://raw.githubusercontent.com/hrodrig/groot-share-selfhosted/main/assets/favicons/android-chrome-512x512.png
+    name: gfs
+    type: application
+    urls:
+    - https://github.com/hrodrig/groot-share-selfhosted/releases/download/gfs-0.1.1/gfs-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 0.2.0
-    created: "2026-08-14T00:18:30.000000000Z"
+    created: "2026-08-14T00:18:30Z"
     description: gfs — VPS web/API door for groot diagnostic archives
     digest: ebb4c66417eda447aedc1ee5e1d0965c0d652d9bcc3ea70e70f4e4a1feba4fb4
     icon: https://raw.githubusercontent.com/hrodrig/groot-share-selfhosted/main/assets/favicons/android-chrome-512x512.png
@@ -12,4 +23,4 @@ entries:
     urls:
     - https://github.com/hrodrig/groot-share-selfhosted/releases/download/gfs-0.1.0/gfs-0.1.0.tgz
     version: 0.1.0
-generated: "2026-08-14T00:18:30.000000000Z"
+generated: "2026-08-19T00:22:10.0738499Z"

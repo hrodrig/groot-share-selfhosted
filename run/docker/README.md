@@ -5,7 +5,8 @@
 ```bash
 export GFS_HOST_DATA=/home/gfs/gfs-data
 mkdir -p "$GFS_HOST_DATA"
-sudo chown 65532:65532 "$GFS_HOST_DATA"
+sudo chown 65532:"$USER" "$GFS_HOST_DATA"
+sudo chmod 2775 "$GFS_HOST_DATA"
 
 docker run -d --name gfs \
   --user 65532:65532 \

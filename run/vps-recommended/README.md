@@ -298,7 +298,7 @@ Pick a gfs path from the [run index](../README.md). Default UFW allows **22 / 80
 | [Standalone binary](../standalone/) | Same | `GFS_*` on the host; data under **`GFS_HOST_DATA`** |
 | [Helm / Kubernetes](../kubernetes/helm/gfs/) | Same on **nodes**; cluster firewall / NetworkPolicy are **additional**. `vps_install_docker=false` | Kubernetes Secrets, PVC |
 
-Keep secrets **out of the git clone** (`${GFS_HOST_DATA}/.env`, K8s Secrets, etc.). Distroless UID **65532** must own the data dir for Compose / `docker run` — this playbook does **not** `chown` it.
+Keep secrets **out of the git clone** (`${GFS_HOST_DATA}/.env`, K8s Secrets, etc.). Compose data dir: owner UID **65532**, group your SSH user, mode **2775** — this playbook does **not** `chown` it.
 
 ## Disclaimer
 

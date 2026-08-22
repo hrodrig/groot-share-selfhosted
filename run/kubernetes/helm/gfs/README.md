@@ -14,7 +14,7 @@ kubectl create secret generic gfs-bootstrap -n gfs \
 helm upgrade --install gfs ./run/kubernetes/helm/gfs \
   --namespace gfs \
   --set bootstrap.existingSecret=gfs-bootstrap \
-  --set image.tag=v0.2.1
+  --set image.tag=v0.5.0
 ```
 
 ## Values highlights
@@ -22,7 +22,7 @@ helm upgrade --install gfs ./run/kubernetes/helm/gfs \
 | Key | Default | Notes |
 |-----|---------|-------|
 | `replicaCount` | `1` | SQLite — do not scale without shared storage |
-| `image.tag` | `v0.2.1` | Pin to groot-share release |
+| `image.tag` | `v0.5.0` | Pin to groot-share release |
 | `topology` | `vps` | `vps` or `vps-s3` |
 | `bootstrap.existingSecret` | `""` | Preferred over inline admin/password |
 | `bootstrap.name` | `""` | First admin display name (gfs default `Administrator`) |

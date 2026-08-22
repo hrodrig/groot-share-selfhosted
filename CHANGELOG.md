@@ -7,6 +7,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-21
+
+### Changed
+
+- Bump app pin **`GFS_VERSION=v0.5.0`** (`ghcr.io/hrodrig/gfs`) across Compose (`minimal`, `traefik`), Helm (`values.yaml`, `Chart.yaml` `appVersion`), `docker run`, standalone/systemd, and all docs.
+- **`VERSION`** → **`0.2.0`**; README version badge + `image.tag` examples; ROADMAP current focus.
+- Standalone Linux README: drop the non-existent `.deb` asset — gfs ships `.tar.gz` only (GoReleaser); document `tar` + `install` instead of `dpkg`.
+
 ### Added
 
 - In-tree **`run/vps-recommended/`** (optional Debian/Ubuntu host baseline + Ansible). Does not install gfs. Compose **minimal** is loopback/lab — UFW defaults stay 22/80/443.

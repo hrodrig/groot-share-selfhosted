@@ -19,17 +19,18 @@ Containers: [docker](../../docker/) / [Compose](../../docker-compose/).
 
 ---
 
-## Debian / Ubuntu (`.deb`)
+## Linux (tarball)
 
-**When available** on Releases (replace version / arch):
+Replace version / arch as needed:
 
 ```bash
-wget -q -O /tmp/gfs.deb \
-  https://github.com/hrodrig/groot-share/releases/download/v0.2.1/gfs_0.2.1_linux_amd64.deb
-sudo dpkg -i /tmp/gfs.deb
+wget -q -O /tmp/gfs_v0.5.0_linux_amd64.tar.gz \
+  https://github.com/hrodrig/groot-share/releases/download/v0.5.0/gfs_v0.5.0_linux_amd64.tar.gz
+tar -xzf /tmp/gfs_v0.5.0_linux_amd64.tar.gz
+sudo install -m 0755 gfs /usr/local/bin/gfs
 ```
 
-> If the `.deb` asset is missing for a tag, use the [tarball](#tarball).
+> gfs ships `.tar.gz` archives (GoReleaser) — there is no `.deb` asset. See the [tarball](#tarball) notes below for the full install flow.
 
 ---
 
@@ -58,7 +59,7 @@ Unit file in this directory: [`gfs.service`](gfs.service).
 
 ```bash
 git clone https://github.com/hrodrig/groot-share.git && cd groot-share
-git checkout v0.2.1
+git checkout v0.5.0
 make build
 export GFS_TOPOLOGY=vps GFS_DATA_DIR=/var/lib/gfs
 ./bin/gfs

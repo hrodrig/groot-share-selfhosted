@@ -41,7 +41,7 @@ Open **https://your-hostname/login** with bootstrap. After first start, drop **`
 
 ## Chrome (optional)
 
-Compose already forwards these from `.env` (gfs **≥ v0.2.1**). Empty = gfs defaults. After edits: `up -d`, not `restart`.
+Compose already forwards these from `.env` (gfs **≥ v0.5.0**). Empty = gfs defaults. After edits: `up -d`, not `restart`.
 
 | Var | Effect |
 |-----|--------|

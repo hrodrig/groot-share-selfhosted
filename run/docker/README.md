@@ -19,7 +19,7 @@ docker run -d --name gfs \
   -e GFS_BOOTSTRAP_ADMIN_NAME=Administrator \
   -e GFS_COOKIE_SECURE=false \
   -v "${GFS_HOST_DATA}:/data" \
-  ghcr.io/hrodrig/gfs:v0.2.1
+  ghcr.io/hrodrig/gfs:v0.5.0
 ```
 
 Image tags: [gfs packages](https://github.com/hrodrig/groot-share/pkgs/container/gfs) / [groot-share releases](https://github.com/hrodrig/groot-share/releases). Match **`GFS_VERSION`** in [`../common/.env.example`](../common/.env.example).

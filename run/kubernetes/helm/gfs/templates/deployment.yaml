@@ -57,6 +57,10 @@ spec:
               value: {{ .Values.env.logLevel | quote }}
             - name: GFS_COOKIE_SECURE
               value: {{ .Values.env.cookieSecure | quote }}
+            - name: GFS_BASE_URL
+              value: {{ .Values.env.baseUrl | quote }}
+            - name: GFS_LOGIN_RATE_LIMIT
+              value: {{ .Values.env.loginRateLimit | quote }}
             - name: GFS_KEEP_LAST
               value: {{ .Values.env.keepLast | quote }}
             - name: GFS_MAX_AGE_DAYS

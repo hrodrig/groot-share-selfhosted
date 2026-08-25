@@ -49,6 +49,15 @@ Compose already forwards these from `.env` (gfs **≥ v0.5.0**). Empty = gfs def
 | `GFS_FOOTER` | Authenticated footer. Default family line. Plain text replaces it. `-` hides. |
 | `GFS_LOGIN_SIMPLE=true` | `/login` is a white form only (no hero / gfs title / favicon). |
 
+## Security (recommended in production)
+
+| Var | Effect |
+|-----|--------|
+| `GFS_BASE_URL` | Public base URL (e.g. `https://gfs.example.com`). gfs uses it verbatim for share links and ignores `X-Forwarded-Proto`/`Host`, so an untrusted client cannot poison share URLs. Empty → derived from the request (only safe behind the Traefik Docker provider that overwrites those headers). |
+| `GFS_LOGIN_RATE_LIMIT` | Cap POST `/login` per IP and per username, `"count/period"` (default `20/1m`). `0` disables. |
+
+Retention (`GFS_KEEP_LAST`, `GFS_MAX_AGE_DAYS`, `GFS_RETENTION_EVERY`, `GFS_STAGING_GRACE`) is also forwarded. Duration vars (`*_EVERY`, `*_GRACE`) use Go duration syntax and **require a unit suffix** (`1h`, `30m`); a bare number falls back to the default silently.
+
 Example in `${GFS_HOST_DATA}/.env`:
 
 ```bash

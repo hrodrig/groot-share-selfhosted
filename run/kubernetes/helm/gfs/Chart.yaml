@@ -3,5 +3,5 @@ name: gfs
 description: gfs — VPS web/API door for groot diagnostic archives
 type: application
 icon: https://raw.githubusercontent.com/hrodrig/groot-share-selfhosted/main/assets/favicons/android-chrome-512x512.png
-version: 0.3.0
+version: 0.3.1
 appVersion: "0.7.0"

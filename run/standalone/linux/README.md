@@ -24,9 +24,9 @@ Containers: [docker](../../docker/) / [Compose](../../docker-compose/).
 Replace version / arch as needed:
 
 ```bash
-wget -q -O /tmp/gfs_v0.5.0_linux_amd64.tar.gz \
-  https://github.com/hrodrig/groot-share/releases/download/v0.5.0/gfs_v0.5.0_linux_amd64.tar.gz
-tar -xzf /tmp/gfs_v0.5.0_linux_amd64.tar.gz
+wget -q -O /tmp/gfs_v0.7.0_linux_amd64.tar.gz \
+  https://github.com/hrodrig/groot-share/releases/download/v0.7.0/gfs_v0.7.0_linux_amd64.tar.gz
+tar -xzf /tmp/gfs_v0.7.0_linux_amd64.tar.gz
 sudo install -m 0755 gfs /usr/local/bin/gfs
 ```
 
@@ -59,7 +59,7 @@ Unit file in this directory: [`gfs.service`](gfs.service).
 
 ```bash
 git clone https://github.com/hrodrig/groot-share.git && cd groot-share
-git checkout v0.5.0
+git checkout v0.7.0
 make build
 export GFS_TOPOLOGY=vps GFS_DATA_DIR=/var/lib/gfs
 ./bin/gfs

@@ -6,7 +6,7 @@ Prefer rendering the chart:
 helm template gfs ../helm/gfs \
   --namespace gfs \
   --set bootstrap.existingSecret=gfs-bootstrap \
-  --set image.tag=v0.5.0
+  --set image.tag=v0.7.0
 ```
 
 Do not hand-maintain a second YAML dialect.

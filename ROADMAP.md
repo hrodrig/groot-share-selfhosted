@@ -9,7 +9,7 @@ Design: [docs/superpowers/specs/2026-08-13-groot-share-selfhosted-design.md](./d
 
 ## Current focus
 
-v0.2.0 tagged — pin **gfs `v0.5.0`** across Compose, Helm, systemd, and docs. Next: SFTP inbox volume docs when gfs Phase 8 ships.
+v0.3.0 tagged — pin **gfs `v0.7.0`** across Compose, Helm, systemd, and docs. Next: SFTP inbox volume docs when gfs Phase 8 ships.
 
 ---
 

@@ -7,6 +7,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-08-25
+
+### Fixed
+
+- Pass **`GFS_BASE_URL`** through to gfs in every manifest (Compose `minimal` + `traefik`, Helm chart) — the share-URL poisoning fix in gfs v0.7.0 was unreachable from these manifests.
+- Pass **`GFS_LOGIN_RATE_LIMIT`** through in every manifest (Compose `minimal` + `traefik`, Helm chart).
+- `.env.example` + Traefik README document `GFS_BASE_URL`, `GFS_LOGIN_RATE_LIMIT`, and retention duration syntax (Go duration with mandatory unit suffix — a bare number silently falls back to the default).
+- Helm chart **`version`** → **`0.3.1`**; **`VERSION`** → **`0.3.1`**; README badge.
+
 ## [0.3.0] - 2026-08-25
 
 ### Changed

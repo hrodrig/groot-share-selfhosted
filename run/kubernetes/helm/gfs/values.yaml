@@ -23,6 +23,8 @@ env:
   logFormat: "json"
   logLevel: "info"
   cookieSecure: "false"
+  baseUrl: ""
+  loginRateLimit: ""
   keepLast: "20"
   maxAgeDays: "90"
   loginSimple: "false"

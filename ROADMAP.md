@@ -9,7 +9,7 @@ Design: [docs/superpowers/specs/2026-08-13-groot-share-selfhosted-design.md](./d
 
 ## Current focus
 
-v0.3.3 tagged — **CVE-2026-98432** host/kernel note + `GODEBUG=multipathtcp=0` in manifests; Dependabot → `develop`; chart-releaser **1.8.0**. Still pin **gfs `v0.8.0`** until upstream MPTCP image ships. Next: bump `GFS_VERSION` after gfs release; SFTP inbox volume docs when needed.
+v0.3.4 tagged — pin **gfs `v0.8.1`** (MPTCP **CVE-2026-98432** binary mitigation + deps). Chart **0.3.4**. Next: SFTP inbox volume docs when needed.
 
 ---
 

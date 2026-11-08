@@ -7,6 +7,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.4] - 2026-11-08
+
+### Changed
+
+- Bump app pin **`GFS_VERSION=v0.8.1`** (`ghcr.io/hrodrig/gfs`) across Compose, Helm, docker run, standalone, and docs. Upstream **gfs v0.8.1** disables MPTCP on the listener (**CVE-2026-98432**) and refreshes crypto/sqlite/AWS deps.
+- Helm chart **`version`** → **`0.3.4`**, **`appVersion`** → **`0.8.1`**; repo **`VERSION`** → **`0.3.4`**; README badge.
+
 ## [0.3.3] - 2026-11-08
 
 ### Security

@@ -11,6 +11,7 @@ sudo chmod 2775 "$GFS_HOST_DATA"
 docker run -d --name gfs \
   --user 65532:65532 \
   -p 8080:8080 \
+  -e GODEBUG=multipathtcp=0 \
   -e GFS_TOPOLOGY=vps \
   -e GFS_DATA_DIR=/data \
   -e GFS_LISTEN=:8080 \

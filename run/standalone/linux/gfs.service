@@ -8,6 +8,8 @@ Wants=network-online.target
 Type=simple
 User=gfs
 Group=gfs
+# Defense in depth (CVE-2026-98432). Kernel patch still required — see SECURITY.md.
+Environment=GODEBUG=multipathtcp=0
 EnvironmentFile=/etc/gfs/gfs.env
 ExecStart=/usr/local/bin/gfs
 Restart=on-failure

@@ -7,6 +7,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Security
+
+- **CVE-2026-98432:** document host/kernel patch requirement for gfs listeners; set **`GODEBUG=multipathtcp=0`** in Compose (`minimal`, `traefik`), Helm Deployment, systemd unit, and `docker run` example. See [SECURITY.md](./SECURITY.md). Upstream binary mitigation lives in [groot-share](https://github.com/hrodrig/groot-share).
+
+### Changed
+
+- Helm chart **`version`** → **`0.3.3`** (template env only; repo `VERSION` unchanged until the next infra cut).
+
 ## [0.3.2] - 2026-10-25
 
 ### Changed

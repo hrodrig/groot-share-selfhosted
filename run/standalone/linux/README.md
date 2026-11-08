@@ -40,7 +40,7 @@ sudo install -m 0755 gfs /usr/local/bin/gfs
 2. Install the binary (example: `/usr/local/bin/gfs`).
 3. Copy env template to **`/etc/gfs/gfs.env`** (not world-readable). Set `GFS_TOPOLOGY`, `GFS_DATA_DIR`, `GFS_BOOTSTRAP_*`.
 4. Create the data directory and a dedicated user (or run as a locked-down service user).
-5. Install the unit:
+5. Install the unit (`gfs.service` sets `GODEBUG=multipathtcp=0` for **CVE-2026-98432**; still patch the host kernel — [SECURITY.md](../../../SECURITY.md)):
 
 ```bash
 sudo install -d -m 0750 /var/lib/gfs /etc/gfs

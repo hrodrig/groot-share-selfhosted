@@ -60,6 +60,8 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
+      # Defense in depth (CVE-2026-98432): gfs also disables MPTCP in-process when the image includes that fix.
+      GODEBUG: ${GODEBUG:-multipathtcp=0}
       GFS_TOPOLOGY: ${GFS_TOPOLOGY:-vps}
       GFS_DATA_DIR: ${GFS_DATA_DIR:-/data}
       GFS_LISTEN: ${GFS_LISTEN:-:8080}

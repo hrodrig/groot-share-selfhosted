@@ -14,6 +14,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - Helm chart **`version`** → **`0.3.3`** (template env only; repo `VERSION` unchanged until the next infra cut).
+- Dependabot **`target-branch: develop`** (was default `main`). PRs must open against **`develop`**, same git-flow as the groot family (`AGENTS.md`).
+- Bump `helm/chart-releaser-action` **v1.7.0 → v1.8.0** in `release-charts.yml` (re-applied on develop after closing Dependabot PR that targeted `main`).
 
 ## [0.3.2] - 2026-10-25
 

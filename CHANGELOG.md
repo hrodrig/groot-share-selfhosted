@@ -7,6 +7,18 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.3] - 2026-11-08
+
+### Security
+
+- **CVE-2026-98432:** document host/kernel patch requirement for gfs listeners; set **`GODEBUG=multipathtcp=0`** in Compose (`minimal`, `traefik`), Helm Deployment, systemd unit, and `docker run` example. See [SECURITY.md](./SECURITY.md). Upstream binary mitigation lives in [groot-share](https://github.com/hrodrig/groot-share).
+
+### Changed
+
+- Helm chart **`version`** → **`0.3.3`**; repo **`VERSION`** → **`0.3.3`**; README badge.
+- Dependabot **`target-branch: develop`** (was default `main`). PRs must open against **`develop`**, same git-flow as the groot family (`AGENTS.md`).
+- Bump `helm/chart-releaser-action` **v1.7.0 → v1.8.0** in `release-charts.yml` (re-applied on develop after closing Dependabot PR that targeted `main`).
+
 ## [0.3.2] - 2026-10-25
 
 ### Changed

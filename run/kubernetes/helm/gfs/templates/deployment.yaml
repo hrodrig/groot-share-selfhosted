@@ -45,6 +45,9 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
           env:
+            # Defense in depth (CVE-2026-98432): binary + go.mod also disable MPTCP when the image includes that fix.
+            - name: GODEBUG
+              value: multipathtcp=0
             - name: GFS_TOPOLOGY
               value: {{ .Values.topology | quote }}
             - name: GFS_DATA_DIR

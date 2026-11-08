@@ -2,7 +2,7 @@
 
 # groot-share-selfhosted
 
-[![Version](https://img.shields.io/badge/version-0.3.2-blue)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.3.3-blue)](./VERSION)
 [![Release](https://img.shields.io/github/v/release/hrodrig/groot-share-selfhosted?label=release)](https://github.com/hrodrig/groot-share-selfhosted/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![App image on GHCR](https://img.shields.io/badge/image-ghcr.io%2Fhrodrig%2Fgfs-2496ED?logo=github)](https://github.com/hrodrig/groot-share/pkgs/container/gfs)
@@ -100,7 +100,7 @@ Product comparison, pros/cons, and “when not to use gfs” stay in **groot-sha
 
 Default image tag in examples: **`v0.8.0`**. Set **`GFS_VERSION`** in **`${GFS_HOST_DATA}/.env`**.
 
-**Your own VPS:** harden the host before exposing gfs. Optional baseline: **[`run/vps-recommended/`](run/vps-recommended/)** (recommendations only). See also [DISCLAIMER.md](./DISCLAIMER.md).
+**Your own VPS:** harden the host before exposing gfs. Optional baseline: **[`run/vps-recommended/`](run/vps-recommended/)** (recommendations only). Patch the **host kernel** for **CVE-2026-98432** (gfs is a listener); manifests set `GODEBUG=multipathtcp=0` — details [SECURITY.md](./SECURITY.md). See also [DISCLAIMER.md](./DISCLAIMER.md).
 
 **[↑ Contents](#table-of-contents)**
 

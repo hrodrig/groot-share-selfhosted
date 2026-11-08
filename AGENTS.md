@@ -5,7 +5,10 @@
 - **Backlog:** track work in **[ROADMAP.md](ROADMAP.md)** (`GSH-*` band IDs). Do not invent parallel private todo lists for this repo.
 - **Scope:** **groot-share-selfhosted** owns deployment (Compose, Helm, systemd, **`run/`**, runbooks) for **gfs**. Application source lives in **[groot-share](https://github.com/hrodrig/groot-share)** (binary / image **gfs**, `ghcr.io/hrodrig/gfs`).
 - **Not this repo:** CronJob / bastion collect, topology **S3 only** (no gfs process) — those stay in **[groot-selfhosted](https://github.com/hrodrig/groot-selfhosted)**. In-cluster Job trigger → **[groot-trigger](https://github.com/hrodrig/groot-trigger)**.
-- Follow **git flow**: work on `develop`; **`main`** for production snapshots; annotated tags **`v<semver>`** on **`main`** for infra releases (see root **`VERSION`**).
+- **Git flow** (same as the groot family — [groot](https://github.com/hrodrig/groot), [groot-share](https://github.com/hrodrig/groot-share), [groot-trigger](https://github.com/hrodrig/groot-trigger), [groot-selfhosted](https://github.com/hrodrig/groot-selfhosted)):
+  - Day-to-day: topic branch (`feat/…`, `fix/…`, `chore/…`, `security/…`, `docs/…`) from an up-to-date **`develop`** → open **PR into `develop`**. Never open product/deps PRs against **`main`**. Never push `develop` or `main` directly.
+  - Dependabot / automation PRs must use **`target-branch: develop`** (see `.github/dependabot.yml`).
+  - Release: PR **`develop` → `main`**, then annotated tag **`v<semver>`** on **`main`** (see root **`VERSION`**). After every merge into `main`, sync **`main` → `develop`** so the next release PR is not **"out-of-date with the base branch"**.
 - **`VERSION`** (repository root): canonical **groot-share-selfhosted** semver (`0.1.0` style, no `v`). When it changes, align the README **Version** badge and **CHANGELOG**. **`Chart.yaml` `version:`** tracks the Helm package only — bump when **`run/kubernetes/helm/gfs/`** changes materially.
 - **`GFS_HOST_DATA` (required for Compose ops):** absolute directory **outside** this clone holding live **`.env`** and durable SQLite / archive files. Updating this repo must never overwrite operator settings.
 - Prefer **`./run/scripts/compose-stack.sh`** so Compose always uses **`${GFS_HOST_DATA}/.env`**. Stacks: `minimal` | `traefik`.

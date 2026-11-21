@@ -9,7 +9,7 @@ Design: [docs/superpowers/specs/2026-08-13-groot-share-selfhosted-design.md](./d
 
 ## Current focus
 
-v0.3.6 tagged — pin **gfs `v0.9.0`**. Chart **0.3.6**. Next: backlog / SFTP inbox volume docs when needed.
+v0.3.7 tagged — pin **gfs `v0.9.1`**. Chart **0.3.7**. Next: backlog / SFTP inbox volume docs when needed.
 
 ---
 

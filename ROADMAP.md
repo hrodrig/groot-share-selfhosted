@@ -9,7 +9,7 @@ Design: [docs/superpowers/specs/2026-08-13-groot-share-selfhosted-design.md](./d
 
 ## Current focus
 
-v0.3.5 tagged — pin **gfs `v0.8.2`** (Go **1.27.4** / **GO-2026-6859**). Chart **0.3.5**. Next: backlog / SFTP inbox volume docs when needed.
+Pin **gfs `v0.9.0`** on develop (chart **0.3.6**). Repo tag still **v0.3.5** until next infra cut. Next: ship/tag this repo when ready; backlog / SFTP inbox volume docs.
 
 ---
 

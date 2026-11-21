@@ -7,6 +7,11 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Bump app pin **`GFS_VERSION=v0.9.0`** (`ghcr.io/hrodrig/gfs`) across Compose, Helm, docker run, standalone, and docs. Upstream **gfs v0.9.0**: fail-closed admin audit, per-cluster `keep_last` + pin-on-ingest, `server/tmpl` + `server/mw` split.
+- Helm chart **`version`** → **`0.3.6`**, **`appVersion`** → **`0.9.0`**.
+
 ## [0.3.5] - 2026-11-20
 
 ### Changed

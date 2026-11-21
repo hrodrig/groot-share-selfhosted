@@ -98,7 +98,7 @@ Product comparison, pros/cons, and “when not to use gfs” stay in **groot-sha
 
 **Config outside the clone:** copy **[`run/common/.env.example`](run/common/.env.example)** → **`${GFS_HOST_DATA}/.env`**, keep SQLite and archives under that directory, prefer **[`run/scripts/compose-stack.sh`](run/scripts/compose-stack.sh)**. `git pull` must not flatten secrets or DB files.
 
-Default image tag in examples: **`v0.8.2`**. Set **`GFS_VERSION`** in **`${GFS_HOST_DATA}/.env`**.
+Default image tag in examples: **`v0.9.0`**. Set **`GFS_VERSION`** in **`${GFS_HOST_DATA}/.env`**.
 
 **Your own VPS:** harden the host before exposing gfs. Optional baseline: **[`run/vps-recommended/`](run/vps-recommended/)** (recommendations only). Patch the **host kernel** for **CVE-2026-98432** (gfs is a listener); manifests set `GODEBUG=multipathtcp=0` — details [SECURITY.md](./SECURITY.md). See also [DISCLAIMER.md](./DISCLAIMER.md).
 
@@ -185,7 +185,7 @@ kubectl create secret generic gfs-bootstrap -n gfs \
 helm upgrade --install gfs ./run/kubernetes/helm/gfs \
   --namespace gfs \
   --set bootstrap.existingSecret=gfs-bootstrap \
-  --set image.tag=v0.8.2
+  --set image.tag=v0.9.0
 ```
 
 **Helm repo (after first chart publish):** [index.yaml](https://hrodrig.github.io/groot-share-selfhosted/index.yaml) · packages on [Releases](https://github.com/hrodrig/groot-share-selfhosted/releases) as `gfs-<chart-version>.tgz`.
@@ -195,7 +195,7 @@ helm repo add gfs https://hrodrig.github.io/groot-share-selfhosted
 helm repo update
 helm upgrade --install gfs gfs/gfs -n gfs --create-namespace \
   --set bootstrap.existingSecret=gfs-bootstrap \
-  --set image.tag=v0.8.2
+  --set image.tag=v0.9.0
 ```
 
 Repo Settings → Pages: source branch **`gh-pages`** (created by chart-releaser on first `v*` tag).

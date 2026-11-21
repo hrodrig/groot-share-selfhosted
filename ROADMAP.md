@@ -9,7 +9,7 @@ Design: [docs/superpowers/specs/2026-08-13-groot-share-selfhosted-design.md](./d
 
 ## Current focus
 
-v0.3.4 tagged — pin **gfs `v0.8.1`** (MPTCP **CVE-2026-98432** binary mitigation + deps). Chart **0.3.4**. Next: SFTP inbox volume docs when needed.
+v0.3.5 tagged — pin **gfs `v0.8.2`** (Go **1.27.4** / **GO-2026-6859**). Chart **0.3.5**. Next: backlog / SFTP inbox volume docs when needed.
 
 ---
 

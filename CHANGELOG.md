@@ -7,10 +7,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.7] - 2026-11-21
+
 ### Changed
 
 - Bump app pin **`GFS_VERSION=v0.9.1`** (`ghcr.io/hrodrig/gfs`) across Compose, Helm, docker run, standalone, and docs. Upstream **gfs v0.9.1**: server split into `core` / `httpapi` / `web` (#78).
-- Helm chart **`version`** → **`0.3.7`**, **`appVersion`** → **`0.9.1`**.
+- Helm chart **`version`** → **`0.3.7`**, **`appVersion`** → **`0.9.1`**; repo **`VERSION`** → **`0.3.7`**; README badge.
+- Bump Dependabot **`helm/chart-releaser-action`** **1.8.0 → 1.9.0**.
 
 ## [0.3.6] - 2026-11-21
 
